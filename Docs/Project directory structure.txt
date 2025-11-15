@@ -1,0 +1,80 @@
+chemical-equipment-visualizer/
+│
+├── backend/                          # Django Backend (API Server)
+│   ├── manage.py
+│   ├── requirements.txt
+│   ├── .env                          # local env vars (ignored in git)
+│   ├── backend/                      # Django project settings folder
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   └── asgi.py
+│   │
+│   ├── api/                          # Main app for CSV handling & APIs
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   ├── tasks.py                  # optional background tasks
+│   │   ├── utils.py                  # helper functions (pdf, csv parsing)
+│   │   ├── tests.py
+│   │   ├── __init__.py
+│   │   └── migrations/
+│   │
+│   ├── media/                        # CSV uploads stored here
+│   │   └── uploads/
+│   │
+│   ├── static/                       # Only if needed
+│   └── README.md
+│
+├── web-frontend/                     # React.js App
+│   ├── src/
+│   │   ├── api/                      # API calls (axios wrapper)
+│   │   │   └── client.js
+│   │   ├── components/
+│   │   │   ├── UploadCSV.jsx
+│   │   │   ├── SummaryCards.jsx
+│   │   │   ├── DataTable.jsx
+│   │   │   └── Charts/
+│   │   │       ├── FlowrateChart.jsx
+│   │   │       └── TypeDistributionChart.jsx
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── DashboardPage.jsx
+│   │   │   ├── HistoryPage.jsx
+│   │   │   └── ReportPage.jsx
+│   │   │
+│   │   ├── assets/
+│   │   ├── App.jsx
+│   │   └── index.js
+│   ├── public/
+│   ├── package.json
+│   └── README.md
+│
+├── desktop-app/                      # PyQt5 Application
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── ui/                            # .ui files or PyQtDesigner files
+│   ├── components/
+│   │   ├── upload_window.py
+│   │   ├── login_window.py
+│   │   ├── summary_window.py
+│   │   └── charts/
+│   │       ├── type_chart.py
+│   │       └── flowrate_chart.py
+│   └── utils/
+│       └── api_client.py              # requests-based API client
+│
+├── sample_data/
+│   └── sample_equipment_data.csv
+│
+├── docs/
+│   ├── Project_Requirement_Document.pdf
+│   ├── workflow.png
+│   ├── api_reference.md
+│   └── README_Internship_Submission.md
+│
+├── .gitignore
+├── LICENSE (optional)
+└── README.md                          # Root README for GitHub submission

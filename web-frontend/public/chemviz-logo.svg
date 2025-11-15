@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with rounded square for better favicon appearance -->
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="url(#gradient)"/>
+  
+  <!-- Flask/Beaker body -->
+  <path d="M32 14 L28 14 L28 22 L24 22 L24 46 C24 50 26 52 30 52 L34 52 C38 52 40 50 40 46 L40 22 L36 22 L36 14 Z" fill="white" opacity="0.98"/>
+  
+  <!-- Liquid level in flask -->
+  <path d="M24 46 L24 38 L40 38 L40 46 C40 48 38 50 34 50 L30 50 C26 50 24 48 24 46 Z" fill="white" opacity="0.6"/>
+  
+  <!-- Flask neck -->
+  <rect x="30" y="22" width="4" height="6" fill="white" opacity="0.98"/>
+  
+  <!-- Bubbles in liquid -->
+  <circle cx="28" cy="42" r="1.5" fill="white" opacity="0.9"/>
+  <circle cx="32" cy="40" r="1" fill="white" opacity="0.9"/>
+  <circle cx="36" cy="42" r="1.5" fill="white" opacity="0.9"/>
+</svg>
+
