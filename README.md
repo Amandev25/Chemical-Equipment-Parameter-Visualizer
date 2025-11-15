@@ -478,14 +478,20 @@ The application uses **session-based authentication** with CSRF protection.
 
 ## 🚀 Deployment
 
-### ⚡ Super Quick Deploy (5 Minutes)
+### 🆓 Free Deployment Options
 
-See [QUICK_DEPLOY.md](QUICK_DEPLOY.md) for the fastest deployment!
+**Option 1: Render (Free Tier)**
+- See [DEPLOY_RENDER.md](DEPLOY_RENDER.md) for step-by-step guide
+- Backend + Frontend on Render (free tier available)
+- Note: Free tier spins down after 15 min inactivity
 
-**TL;DR:**
-1. Backend → [Railway](https://railway.app) (3 min)
-2. Frontend → [Vercel](https://vercel.com) (2 min)
-3. Update CORS → Done! 🎉
+**Option 2: Render Backend + Vercel Frontend (Recommended)**
+- Backend: [Render](https://render.com) (free tier)
+- Frontend: [Vercel](https://vercel.com) (always free, faster)
+- Best of both worlds!
+
+**Option 3: Railway (Paid)**
+- See [QUICK_DEPLOY.md](QUICK_DEPLOY.md) if you have Railway credits
 
 ### 📖 Simple Deployment Guide
 
