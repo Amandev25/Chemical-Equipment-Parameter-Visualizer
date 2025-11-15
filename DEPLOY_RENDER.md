@@ -62,7 +62,8 @@ Add these variables one by one (click "Add Environment Variable" for each):
 
 **Variable 3:**
 - Key: `ALLOWED_HOSTS`
-- Value: `chemviz-backend.onrender.com`
+- Value: `chemical-equipment-parameter-visualizer-1.onrender.com`
+  - **IMPORTANT:** Use your actual Render service URL (the one you see in Render dashboard)
 
 **Variable 4:**
 - Key: `DATABASE_URL`
