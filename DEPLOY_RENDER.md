@@ -33,7 +33,7 @@ Since Railway trial ended, let's use Render which has a free tier!
    - **Root Directory**: `backend`
    - **Environment**: **Python 3**
    - **Python Version**: **MUST BE 3.11** - Look for a dropdown or field that says "Python Version" and select `3.11` (NOT 3.13!)
-   - **Build Command**: `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt`
+   - **Build Command**: `pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && python manage.py collectstatic --noinput`
    - **Start Command**: `python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT`
    - **Plan**: **Free** (or Starter)
 
