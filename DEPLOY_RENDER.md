@@ -32,6 +32,7 @@ Since Railway trial ended, let's use Render which has a free tier!
    - **Branch**: `main`
    - **Root Directory**: `backend`
    - **Environment**: **Python 3**
+   - **Python Version**: `3.11` (or select from dropdown if available)
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT`
    - **Plan**: **Free** (or Starter)

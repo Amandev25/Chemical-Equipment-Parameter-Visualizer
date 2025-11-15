@@ -9,7 +9,8 @@ openpyxl==3.1.2
 reportlab==4.0.7
 psycopg2-binary==2.9.9
 drf-yasg==1.21.7
-setuptools>=65.0.0
+setuptools==69.5.1
+wheel==0.43.0
 gunicorn==21.2.0
 whitenoise==6.6.0
 

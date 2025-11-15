@@ -68,11 +68,14 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # Support for DATABASE_URL (used by Render, Railway, Heroku, etc.)
-import dj_database_url
+try:
+    import dj_database_url
+except ImportError:
+    dj_database_url = None
 
 DATABASE_URL = config('DATABASE_URL', default=None)
 
-if DATABASE_URL:
+if DATABASE_URL and dj_database_url:
     # Use PostgreSQL from DATABASE_URL (production)
     DATABASES = {
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
