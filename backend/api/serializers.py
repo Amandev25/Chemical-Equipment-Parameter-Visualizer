@@ -184,6 +184,12 @@ class RegisterSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, required=True, min_length=6)
     password_confirm = serializers.CharField(write_only=True, required=True, min_length=6)
     
+    def validate_username(self, value):
+        from django.contrib.auth.models import User
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("A user with this username already exists.")
+        return value
+    
     def validate(self, attrs):
         if attrs['password'] != attrs['password_confirm']:
             raise serializers.ValidationError("Passwords do not match.")
