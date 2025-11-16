@@ -366,18 +366,28 @@ def register_view(request):
     """
     User registration endpoint.
     """
-    serializer = RegisterSerializer(data=request.data)
-    
-    if serializer.is_valid():
-        user = serializer.save()
-        login(request, user)
-        user_serializer = UserSerializer(user)
+    try:
+        serializer = RegisterSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            user = serializer.save()
+            login(request, user)
+            user_serializer = UserSerializer(user)
+            return Response({
+                'message': 'Registration successful',
+                'user': user_serializer.data
+            }, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        print(f"Registration error: {str(e)}")
+        print(f"Traceback: {error_trace}")
         return Response({
-            'message': 'Registration successful',
-            'user': user_serializer.data
-        }, status=status.HTTP_201_CREATED)
-    
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            'error': 'Registration failed',
+            'detail': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
