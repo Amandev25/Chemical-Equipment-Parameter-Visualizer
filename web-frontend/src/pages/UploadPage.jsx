@@ -64,8 +64,20 @@ export default function UploadPage({ onLogout }) {
     setError(null);
 
     try {
+      // Check if user is authenticated
+      try {
+        await api.getCurrentUser();
+        console.log('User is authenticated');
+      } catch (authError) {
+        console.error('User not authenticated:', authError);
+        setError('You are not logged in. Please log in and try again.');
+        setIsUploading(false);
+        return;
+      }
+      
       // Ensure CSRF token is available before upload
       await api.getCsrfToken();
+      console.log('CSRF token obtained');
       
       // Simulate progress
       const progressInterval = setInterval(() => {
@@ -88,11 +100,34 @@ export default function UploadPage({ onLogout }) {
       setUploadComplete(true);
     } catch (error) {
       console.error('Upload error:', error);
-      const errorMessage = error.response?.data?.error || 
-                          error.response?.data?.message || 
-                          error.response?.data?.detail ||
-                          error.message || 
-                          'Upload failed. Please check if the backend is running.';
+      console.error('Error response:', error.response);
+      console.error('Error response data:', error.response?.data);
+      
+      let errorMessage = 'Upload failed. Please check if the backend is running.';
+      
+      if (error.response) {
+        // Server responded with error
+        const status = error.response.status;
+        const data = error.response.data;
+        
+        if (status === 403) {
+          errorMessage = data?.detail || 
+                        data?.error || 
+                        'Access forbidden. Please make sure you are logged in and try again.';
+        } else if (status === 401) {
+          errorMessage = 'You are not authenticated. Please log in and try again.';
+        } else {
+          errorMessage = data?.error || 
+                        data?.message || 
+                        data?.detail ||
+                        `Server error: ${status}`;
+        }
+      } else if (error.request) {
+        errorMessage = 'Cannot connect to server. Please check your internet connection.';
+      } else {
+        errorMessage = error.message || errorMessage;
+      }
+      
       setError(errorMessage);
       setUploadProgress(0);
     } finally {
