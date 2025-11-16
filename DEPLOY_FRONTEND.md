@@ -51,12 +51,14 @@ Your Backend URL: `https://chemical-equipment-parameter-visualizer-1.onrender.co
 **Variable 1:**
 - Key: `CORS_ALLOWED_ORIGINS`
 - Value: `https://your-frontend-url.vercel.app`
-  (Use your actual Vercel URL from Step 1.5)
+  - Use your actual Vercel URL from Step 1.5
+  - ⚠️ **NO trailing slash!** (Don't add `/` at the end)
 
 **Variable 2:**
 - Key: `CSRF_TRUSTED_ORIGINS`
 - Value: `https://your-frontend-url.vercel.app`
-  (Use your actual Vercel URL from Step 1.5)
+  - Use your actual Vercel URL from Step 1.5
+  - ⚠️ **NO trailing slash!** (Don't add `/` at the end)
 
 3. Click **"Save Changes"**
 4. Render will automatically redeploy
