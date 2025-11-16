@@ -45,6 +45,10 @@ class EquipmentViewSet(viewsets.ModelViewSet):
         """
         Filter queryset based on query parameters and user.
         """
+        # Handle Swagger schema generation (user is AnonymousUser)
+        if not self.request.user.is_authenticated:
+            return Equipment.objects.none()
+        
         # Filter by user's CSV uploads
         user_csv_uploads = CSVUpload.objects.filter(user=self.request.user)
         queryset = Equipment.objects.filter(csv_upload__in=user_csv_uploads)
@@ -106,6 +110,10 @@ class CSVUploadViewSet(viewsets.ModelViewSet):
         """
         Return only the last 5 CSV uploads for the authenticated user (most recent first).
         """
+        # Handle Swagger schema generation (user is AnonymousUser)
+        if not self.request.user.is_authenticated:
+            return CSVUpload.objects.none()
+        
         return CSVUpload.objects.filter(user=self.request.user).order_by('-uploaded_at')[:5]
     
     def create(self, request, *args, **kwargs):
