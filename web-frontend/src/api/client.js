@@ -34,6 +34,12 @@ apiClient.interceptors.request.use(
     if (csrftoken) {
       config.headers['X-CSRFToken'] = csrftoken;
     }
+    
+    // For FormData, remove Content-Type to let browser set it with boundary
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
+    }
+    
     return config;
   },
   (error) => {
@@ -82,11 +88,8 @@ export const api = {
   uploadCSV: (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    return apiClient.post('/uploads/', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    // The interceptor will handle Content-Type removal and CSRF token addition
+    return apiClient.post('/uploads/', formData);
   },
   getUploads: () => apiClient.get('/uploads/'),
   getUploadById: (id) => apiClient.get(`/uploads/${id}/`),

@@ -64,6 +64,9 @@ export default function UploadPage({ onLogout }) {
     setError(null);
 
     try {
+      // Ensure CSRF token is available before upload
+      await api.getCsrfToken();
+      
       // Simulate progress
       const progressInterval = setInterval(() => {
         setUploadProgress((prev) => {
@@ -87,6 +90,7 @@ export default function UploadPage({ onLogout }) {
       console.error('Upload error:', error);
       const errorMessage = error.response?.data?.error || 
                           error.response?.data?.message || 
+                          error.response?.data?.detail ||
                           error.message || 
                           'Upload failed. Please check if the backend is running.';
       setError(errorMessage);
