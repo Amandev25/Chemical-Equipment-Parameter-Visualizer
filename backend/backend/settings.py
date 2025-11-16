@@ -180,9 +180,16 @@ CSRF_TRUSTED_ORIGINS = config(
     default='http://localhost:3000,http://127.0.0.1:3000'
 ).split(',')
 
-CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'None'  # Allow cross-origin requests
+CSRF_COOKIE_SECURE = True  # Required when SameSite=None
 CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript to read CSRF token from cookie
 CSRF_USE_SESSIONS = False
+
+# Session Configuration (for authentication)
+SESSION_COOKIE_SAMESITE = 'None'  # Allow cross-origin requests
+SESSION_COOKIE_SECURE = True  # Required when SameSite=None (HTTPS only)
+SESSION_COOKIE_HTTPONLY = True  # Prevent XSS attacks
+SESSION_COOKIE_AGE = 86400  # 24 hours
 
 # CSV Upload Settings
 CSV_MAX_SIZE = 10 * 1024 * 1024  # 10 MB
@@ -202,8 +209,7 @@ SWAGGER_SETTINGS = {
 # Production Security Settings
 if not DEBUG:
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
-    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
-    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    # SESSION_COOKIE_SECURE and CSRF_COOKIE_SECURE are set above for cross-origin support
     SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
     SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
     X_FRAME_OPTIONS = 'DENY'
