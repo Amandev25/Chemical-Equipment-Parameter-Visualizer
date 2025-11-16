@@ -35,12 +35,25 @@ export default function LoginPage({ onLogin }) {
       // Authentication successful
       onLogin();
     } catch (err) {
-      const errorMessage = err.response?.data?.error || 
-                          err.response?.data?.message || 
-                          err.response?.data?.username?.[0] ||
-                          err.response?.data?.password?.[0] ||
-                          err.message || 
-                          'Authentication failed. Please try again.';
+      console.error('Login error:', err); // Log for debugging
+      
+      let errorMessage = 'Authentication failed. Please try again.';
+      
+      if (err.response) {
+        // Server responded with error
+        errorMessage = err.response.data?.error || 
+                      err.response.data?.message || 
+                      err.response.data?.username?.[0] ||
+                      err.response.data?.password?.[0] ||
+                      `Server error: ${err.response.status}`;
+      } else if (err.request) {
+        // Request made but no response (network error)
+        errorMessage = 'Cannot connect to server. Please check your internet connection and try again.';
+      } else {
+        // Something else happened
+        errorMessage = err.message || errorMessage;
+      }
+      
       setError(errorMessage);
     } finally {
       setIsLoading(false);
