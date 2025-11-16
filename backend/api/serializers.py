@@ -197,10 +197,19 @@ class RegisterSerializer(serializers.Serializer):
     
     def create(self, validated_data):
         from django.contrib.auth.models import User
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data.get('email', ''),
-            password=validated_data['password']
-        )
-        return user
+        from django.db import IntegrityError
+        
+        try:
+            user = User.objects.create_user(
+                username=validated_data['username'],
+                email=validated_data.get('email', ''),
+                password=validated_data['password']
+            )
+            return user
+        except IntegrityError as e:
+            if 'username' in str(e):
+                raise serializers.ValidationError({
+                    'username': ['A user with this username already exists.']
+                })
+            raise
 
