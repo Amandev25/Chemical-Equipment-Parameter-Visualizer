@@ -342,29 +342,39 @@ def login_view(request):
     """
     User login endpoint.
     """
-    username = request.data.get('username')
-    password = request.data.get('password')
-    
-    if not username or not password:
-        return Response(
-            {'error': 'Username and password are required'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-    
-    user = authenticate(request, username=username, password=password)
-    
-    if user is not None:
-        login(request, user)
-        serializer = UserSerializer(user)
+    try:
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if not username or not password:
+            return Response(
+                {'error': 'Username and password are required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            serializer = UserSerializer(user)
+            return Response({
+                'message': 'Login successful',
+                'user': serializer.data
+            })
+        else:
+            return Response(
+                {'error': 'Invalid username or password'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+    except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        print(f"Login error: {str(e)}")
+        print(f"Traceback: {error_trace}")
         return Response({
-            'message': 'Login successful',
-            'user': serializer.data
-        })
-    else:
-        return Response(
-            {'error': 'Invalid username or password'},
-            status=status.HTTP_401_UNAUTHORIZED
-        )
+            'error': 'Login failed',
+            'detail': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
