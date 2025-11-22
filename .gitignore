@@ -18,6 +18,9 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+__pycache__/
+*.pyc
+*.pyo
 
 # Virtual Environment
 venv/
@@ -79,4 +82,8 @@ backend/media/uploads/*
 *.tmp
 *.temp
 .cache/
+
+
+
+
 
