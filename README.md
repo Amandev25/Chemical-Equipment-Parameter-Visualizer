@@ -64,7 +64,11 @@ A comprehensive full-stack application for managing, visualizing, and analyzing 
 ![Desktop Visualization](screenshots/desktop-visualization.png)
 *Data table with filtering*
 
-> **Note**: Add your screenshots to the `screenshots/` directory and update the paths above.
+> **📸 How to Add Screenshots:**
+> 1. Take screenshots of your application
+> 2. Save them in the `screenshots/` directory with the exact filenames shown above
+> 3. Commit and push to GitHub
+> 4. Images will automatically appear in the README
 
 ---
 
