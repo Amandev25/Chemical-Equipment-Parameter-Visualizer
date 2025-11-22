@@ -146,16 +146,16 @@ class DashboardTab(QWidget):
             summary = summary_result['data']
             
             # Update stats cards
-            total = summary.get('total_equipment', 0)
+            total = summary.get('total_equipment', 0) or 0
             self.update_card(self.total_equipment_card, str(total))
             
-            avg_flowrate = summary.get('avg_flowrate', 0)
+            avg_flowrate = summary.get('avg_flowrate', 0) or 0
             self.update_card(self.avg_flowrate_card, f"{avg_flowrate:.1f}")
             
-            avg_pressure = summary.get('avg_pressure', 0)
+            avg_pressure = summary.get('avg_pressure', 0) or 0
             self.update_card(self.avg_pressure_card, f"{avg_pressure:.1f}")
             
-            avg_temp = summary.get('avg_temperature', 0)
+            avg_temp = summary.get('avg_temperature', 0) or 0
             self.update_card(self.avg_temperature_card, f"{avg_temp:.1f}")
         
         # Load type distribution
