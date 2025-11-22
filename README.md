@@ -246,25 +246,6 @@ Interactive API documentation available at:
 
 ---
 
-## 🚀 Deployment
-
-### Quick Deploy Options
-
-**Backend:**
-- [Render](https://render.com) - Free tier available
-- [Railway](https://railway.app) - Easy deployment
-- [Heroku](https://heroku.com) - Classic platform
-
-**Web Frontend:**
-- [Vercel](https://vercel.com) - Recommended (always free)
-- [Netlify](https://netlify.com) - Great alternative
-
-**Desktop App:**
-- Package as executable using PyInstaller
-- Distribute via GitHub Releases
-
----
-
 ## 📝 License
 
 This project is licensed under the MIT License.
